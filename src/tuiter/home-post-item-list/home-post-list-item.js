@@ -40,7 +40,7 @@ const HomePostListItem = (
                     <i className='bi bi-repeat' style={{color: 'grey'}}> {post.retweet}</i>
                     <i className='bi bi-suit-heart' style={{color: 'grey'}}> {post.likes}</i>
                     <i className='bi bi-upload' style={{color: 'grey'}}></i>
-                 </p>
+                </p>
             </div>
  
     </div>
