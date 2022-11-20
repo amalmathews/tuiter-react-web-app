@@ -1,5 +1,6 @@
 import React from "react";
-import {deleteTuit} from "../tuits/tuits-reducer";
+
+import {deleteTuitThunk} from "../../services/tuits-thunks";
 import TuitsStats from "./TuitStats";
 import {useDispatch} from "react-redux";
 const TuitItem = (
@@ -15,6 +16,7 @@ const TuitItem = (
         "replies": 123,
         "retuits": 432,
         "likes": 2345,
+        "dislikes": 212,
         "handle": "@spacex",
         "tuit": "You want to wake up in the morning and think the future is going to be great - and that’s what being a spacefaring civilization is all about. It’s about believing in the future and thinking that the future will be better than the past. And I can’t think of anything more exciting than going out there and being among the stars"
     }
@@ -22,20 +24,16 @@ const TuitItem = (
 ) => {
 const dispatch = useDispatch();
 const deleteTuitHandler = (id) => {
-  dispatch(deleteTuit(id));
+    dispatch(deleteTuitThunk(id));
 }
-
+console.log(post)
  return(
     <div className="container mb-2">
         <img src={`/images/${post.image}`} className='wd-float-left me-2 bordering' height={40} width={40} alt=""/>
         <i className="bi bi-x-lg float-end" onClick={() => deleteTuitHandler(post._id)}></i>
             <div className="row">
                 <span className=""><b>{post.userName}&nbsp;</b> <span className="wd-handle text-secondary"> {post.handle} <span>&#8226;</span> {post.time}</span></span>
-                {/* <span>{post.title}</span>
-                <div className="position-relative">
-                    <img src={`/images/${post.image}`}
-                        className="card-img-top mt-2" alt=""/>   
-                </div> */}
+                
                 <span className={'border border-light rounded-bottom mb-3'}>
                     <span className="card-text text-secondary">
                         {post.tuit}
@@ -43,7 +41,7 @@ const deleteTuitHandler = (id) => {
                     <br/>
                 </span>
 
-               <TuitsStats post={post}/>
+               <TuitsStats tuit={post}/>
             </div>
  
     </div>

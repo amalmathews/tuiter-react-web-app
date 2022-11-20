@@ -1,10 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 //import postsArray from './posts.json';
 import PostSummaryItem from "./post-summary-item";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {findTuitsThunk} from "../../services/tuits-thunks";
 
 const  PostSummaryList = () => {
-  const postsArray = useSelector(state => state.tuits)
+  const postsArray = useSelector(state => state.tuitsData)
+  console.log(postsArray)
+  const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(findTuitsThunk())
+    }, [])
+    // eslint-disable-line react-hooks/exhaustive-deps
+
  return(
    <ul className="list-group">
      {
